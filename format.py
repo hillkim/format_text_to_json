@@ -1,17 +1,23 @@
 #!/usr/bin/python
+#hillkim
+#modify and use however you wish
 
 
-#print "give me a bottle of rum!"
+#the data has 3 fields country initial,full name, box coordinates
+#the script reads the data line by line and formats it to a json object
 
-#mock = "'AF': ('Afghanistan', (60.5284298033, 29.318572496, 75.1580277851, 38.4862816432)),"
-#print mock
-d = open("output.json",'w')
-#print >>d, 'whatever'     # Python 2.x
-#print('whatever', file=f) # Python 3.x
 
+
+#output file
+d = open("data.json",'w') 
+
+#inital line of the json file
 print >>d , "{ \"countries\" :["
+
+#reading the input file(Data.txt)
 with open("Data.txt") as f:
     for dataLine in f:
+    #print country initial and name
           data= dataLine.split(':')
           print >>d , "{\n\"country\" : "+data[0].strip().replace('\'','\"')+","
           dataAfter=data[1].split(',')
@@ -25,8 +31,6 @@ with open("Data.txt") as f:
                   else:
                        print >>d , dataAfter[i].strip().replace(')','').replace('(','')
           print >>d , "]\n},"
+#final lines in json file
 print >>d , "] }"
 
-#for element in l:
- #   parts = element.split(',')
-    #print parts
